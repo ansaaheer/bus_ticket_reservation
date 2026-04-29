@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusTicket - Online Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1 class="logo">BusTicket</h1>
+            
+            <div id="loginSection">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+                <p class="toggle-text">Don't have an account? <a href="#" onclick="toggleAuth(true)">Register here</a></p>
+            </div>
+
+            <div id="registerSection" style="display: none;">
+                <h2>Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regName">Full Name</label>
+                        <input type="text" id="regName" name="fullname" required placeholder="Your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" name="email" required placeholder="Your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" name="password" required placeholder="Create a password">
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p class="toggle-text">Already have an account? <a href="#" onclick="toggleAuth(false)">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Simple UI toggle between Login and Register
+        function toggleAuth(showRegister) {
+            document.getElementById('loginSection').style.display = showRegister ? 'none' : 'block';
+            document.getElementById('registerSection').style.display = showRegister ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

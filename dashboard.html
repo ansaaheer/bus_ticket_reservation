@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - BusTicket</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-body">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="logo">BusTicket</h2>
+            <div class="nav-links">
+                <span id="welcomeText">Welcome, User</span>
+                <a href="booking.html" class="nav-item">Book a Ticket</a>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="dashboard-header">
+            <h1>My Bookings</h1>
+            <p>View your upcoming trips and reservation details.</p>
+        </section>
+
+        <div class="table-container">
+            <table id="userBookingsTable">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Bus Name</th>
+                        <th>Route</th>
+                        <th>Departure</th>
+                        <th>Seats</th>
+                        <th>Total Fare</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsList">
+                    <tr>
+                        <td colspan="7" style="text-align:center;">Loading your bookings...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Security: Redirect to login if not authenticated
+        document.addEventListener('DOMContentLoaded', async () => {
+            const auth = await checkAuth();
+            if (!auth.success || auth.role !== 'user') {
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('welcomeText').innerText = `Welcome, ${auth.name}`;
+                // Load the user's specific bookings
+                loadUserBookings();
+            }
+        });
+    </script>
+</body>
+</html>

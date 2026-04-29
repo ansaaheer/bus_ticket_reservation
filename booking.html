@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Ticket - BusTicket</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="logo">BusTicket</h2>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">My Bookings</a>
+                <a href="profile.html" class="nav-item">My Profile</a> <button onclick="logout()" class="btn-logout">Logout</button>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="booking-header">
+            <h1>Search Available Buses</h1>
+            <p>Find the best routes at the best prices.</p>
+        </section>
+
+        <div class="table-container" style="padding: 20px; margin-bottom: 30px;">
+            <form id="searchForm" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; align-items: end;">
+                <div class="form-group">
+                    <label>From (Source)</label>
+                    <input type="text" id="searchFrom" placeholder="City name...">
+                </div>
+                <div class="form-group">
+                    <label>To (Destination)</label>
+                    <input type="text" id="searchTo" placeholder="City name...">
+                </div>
+                <button type="submit" class="btn-primary">Search Buses</button>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bus Name</th>
+                        <th>Route</th>
+                        <th>Departure</th>
+                        <th>Available Seats</th>
+                        <th>Fare</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="availableBusesList">
+                    <tr>
+                        <td colspan="6" style="text-align:center;">Use the search bar to find buses.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+    <script>
+        // Security check
+        document.addEventListener('DOMContentLoaded', async () => {
+            const auth = await checkAuth();
+            if (!auth.success) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

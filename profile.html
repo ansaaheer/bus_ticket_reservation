@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - BusTicket</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="logo">BusTicket</h2>
+            <div class="nav-links">
+                <span id="welcomeText">Welcome, User</span>
+                <a href="profile.html" class="nav-item">My Profile</a> <a href="booking.html" class="nav-item">Book a Ticket</a>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+</div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="table-container" style="max-width: 600px; margin: 40px auto; padding: 30px;">
+            <h2 style="margin-bottom: 20px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">User Profile</h2>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <label style="color: var(--text-muted); font-size: 0.8rem;">FULL NAME</label>
+                    <p id="profName" style="font-size: 1.2rem; font-weight: 600;">Loading...</p>
+                </div>
+                <div>
+                    <label style="color: var(--text-muted); font-size: 0.8rem;">EMAIL ADDRESS</label>
+                    <p id="profEmail" style="font-size: 1.2rem; font-weight: 600;">Loading...</p>
+                </div>
+                <div>
+                    <label style="color: var(--text-muted); font-size: 0.8rem;">ACCOUNT TYPE</label>
+                    <p id="profRole" style="font-size: 1rem; color: var(--primary-color); text-transform: uppercase;">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const auth = await checkAuth();
+            if (!auth.success) {
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('profName').innerText = auth.name;
+                document.getElementById('profEmail').innerText = auth.email;
+                document.getElementById('profRole').innerText = auth.role;
+            }
+        });
+    </script>
+</body>
+</html>
